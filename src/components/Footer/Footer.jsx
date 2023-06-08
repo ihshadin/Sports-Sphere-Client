@@ -9,8 +9,8 @@ import logo from '../../assets/images/logo.png'
 const Footer = () => {
     return (
         <footer className='sphere-primary-bg pt-10'>
-            <div className='px-3 xl:px-0 xl:container mx-auto md:flex justify-between'>
-                <div className='mt-8 md:mt-0 md:basis-2/4'>
+            <div className='px-3 xl:px-0 xl:container mx-auto grid md:grid-cols-2 gap-10'>
+                <div className='mt-8 md:mt-0'>
                     <Link to='/'>
                         <img className='w-20 md:w-36' src={logo} alt="" />
                     </Link>
@@ -25,7 +25,7 @@ const Footer = () => {
                         <TfiLinkedin className='w-10 h-10 p-2 cursor-pointer' />
                     </div>
                 </div>
-                <div className='mt-10 md:mt-0 sphere-secondary'>
+                <div className='mt-10 md:mt-0 sphere-secondary md:ml-auto'>
                     <h3 className='text-3xl font-playfair text-white text-left mb-3 md:mb-10'>Contact Info</h3>
                     <div className='flex gap-2 items-center leading-5 font-light'>
                         <span className='p-2 rounded-full inline-block'><TiLocationOutline className='w-5 h-5' /></span>
