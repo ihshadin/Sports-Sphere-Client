@@ -1,10 +1,81 @@
 import React from 'react';
+import { Helmet } from 'react-helmet-async';
+import LoginWithSocial from '../../components/LoginWithSocial/LoginWithSocial';
+import { Link } from 'react-router-dom';
+import { useForm } from 'react-hook-form';
 
 const Registration = () => {
+    const { register, handleSubmit, watch, formState: { errors } } = useForm();
+
+    const handleRegister = (data) => {
+        console.log(data);
+    }
     return (
-        <div>
-            This is registration page
-        </div>
+        <section className='py-10 md:py-16'>
+            <Helmet>
+                <title>Sports Sphere | Sign Up</title>
+            </Helmet>
+            <div className='shadow-xl max-w-xl mx-auto py-10 md:py-16 px-5 md:px-10 rounded-3xl bg-white'>
+                <h2 className='font-playfair text-3xl font-bold text-center mb-6'>Please Sign Up</h2>
+                <form onSubmit={handleSubmit(handleRegister)} className='text-base flex flex-col gap-3'>
+                    <div>
+                        <input placeholder='Full Name' type='text'
+                            className='block sphere-secondary-bg w-full py-3 px-5 rounded-none'
+                            {...register("fullName", { required: true })} />
+                        {errors.fullName && <small>This field is required</small>}
+                    </div>
+                    <div>
+                        <input placeholder='Email Address' type='text'
+                            className='block sphere-secondary-bg w-full py-3 px-5 rounded-none'
+                            {...register("email", { required: true })} />
+                        {errors.email && <small>This field is required</small>}
+                    </div>
+                    <div>
+                        <input placeholder='Password' type='text'
+                            className='block sphere-secondary-bg w-full py-3 px-5 rounded-none'
+                            {...register("password", { required: true })} />
+                        {errors.password && <small>This field is required</small>}
+                    </div>
+                    <div>
+                        <input placeholder='Confirm Password' type='text'
+                            className='block sphere-secondary-bg w-full py-3 px-5 rounded-none'
+                            {...register("confirmPassword", { required: true })} />
+                        {errors.confirmPassword && <small>This field is required</small>}
+                    </div>
+                    <div>
+                        <input placeholder='Photo URL' type='text'
+                            className='block sphere-secondary-bg w-full py-3 px-5 rounded-none'
+                            {...register("photo", { required: true })} />
+                        {errors.photo && <small>This field is required</small>}
+                    </div>
+                    {/* <div>
+                        <input placeholder='Photo' type='file'
+                            label='Photo'
+                            className='block w-full rounded-none file-input file-input-bordered file-input-primary border-[#445760]'
+                            {...register("photo", { required: true })} />
+                        {errors.photo && <small>This field is required</small>}
+                    </div> */}
+                    <div>
+                        <input placeholder='Phone Number' type='text'
+                            className='block sphere-secondary-bg w-full py-3 px-5 rounded-none'
+                            {...register("phone", { required: true })} />
+                        {errors.phone && <small>This field is required</small>}
+                    </div>
+                    <div>
+                        <input placeholder='address' type='text'
+                            className='block sphere-secondary-bg w-full py-3 px-5 rounded-none'
+                            {...register("address", { required: true })} />
+                        {errors.address && <small>This field is required</small>}
+                    </div>
+                    <input className='cursor-pointer sphere-primary-bg sphere-secondary font-semibold uppercase py-3' type="submit" />
+                </form>
+                <div>
+                    <small className='text-base block mt-2 text-center font-medium'>Already have an Account? Please <Link to='/login' className='text-amber-500'>Sign In</Link></small>
+                </div>
+                <div className='divider divide-slate-400 divide-x-2 mt-5 mb-5'></div>
+                <LoginWithSocial />
+            </div>
+        </section>
     );
 };
 

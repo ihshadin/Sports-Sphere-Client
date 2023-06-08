@@ -23,3 +23,8 @@ body {
 .font-playfair {
     font-family: 'Playfair Display', serif;
 }
+.file-input-primary::file-selector-button {
+    border-color: #445760 !important;
+    background-color: #445760;
+    color: white;
+}
