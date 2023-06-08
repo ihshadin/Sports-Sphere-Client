@@ -1,0 +1,25 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+body {
+    background-color: #faffff;
+    font-family: 'Poppins', sans-serif;
+}
+.sphere-primary {
+    color: #445760;
+}
+.sphere-primary-bg {
+    background-color: #445760;
+}
+.sphere-secondary {
+    color: #ECF8F9;
+}
+.sphere-secondary-bg {
+    background-color: #ECF8F9;
+}
+.font-poppins {
+    font-family: 'Poppins', sans-serif;
+}
+.font-playfair {
+    font-family: 'Playfair Display', serif;
+}
