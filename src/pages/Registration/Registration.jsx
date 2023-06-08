@@ -25,7 +25,7 @@ const Registration = () => {
                         {errors.fullName && <small>This field is required</small>}
                     </div>
                     <div>
-                        <input placeholder='Email Address' type='text'
+                        <input placeholder='Email Address' type='email'
                             className='block sphere-secondary-bg w-full py-3 px-5 rounded-none'
                             {...register("email", { required: true })} />
                         {errors.email && <small>This field is required</small>}
@@ -33,14 +33,30 @@ const Registration = () => {
                     <div>
                         <input placeholder='Password' type='text'
                             className='block sphere-secondary-bg w-full py-3 px-5 rounded-none'
-                            {...register("password", { required: true })} />
-                        {errors.password && <small>This field is required</small>}
+                            {...register("password", {
+                                required: true,
+                                minLength: 6,
+                                pattern: /(?=.*[A-Z])(?=.*[a-z])/
+                            })} />
+                        {errors.password?.type === 'required' && <small>Password is required</small>}
+                        {errors.password?.type === 'minLength' && <small>Password must be at least 6 characters</small>}
+                        {errors.password?.type === 'pattern' && <>
+                            {!/(?=.*[A-Z])/.test(watch("password")) && (
+                                <small>Password must have at least one UPPERCASE letter</small>
+                            )}
+                            {/(?=.*[A-Z])/.test(watch("password")) && !/(?=.*[a-z])/.test(watch("password")) && (
+                                <small>Password must have at least one lowercase letter</small>
+                            )}
+                        </>}
                     </div>
                     <div>
                         <input placeholder='Confirm Password' type='text'
                             className='block sphere-secondary-bg w-full py-3 px-5 rounded-none'
-                            {...register("confirmPassword", { required: true })} />
-                        {errors.confirmPassword && <small>This field is required</small>}
+                            {...register("confirmPassword", {
+                                required: true,
+                                validate: value => value === watch("password"),
+                            })} />
+                        {errors.confirmPassword && <small>Passwords do not match</small>}
                     </div>
                     <div>
                         <input placeholder='Photo URL' type='text'
@@ -55,17 +71,27 @@ const Registration = () => {
                             {...register("photo", { required: true })} />
                         {errors.photo && <small>This field is required</small>}
                     </div> */}
+
+                    <div>
+                        <select
+                            placeholder='Gender'
+                            className='block sphere-secondary-bg w-full py-3 px-5 rounded-none'
+                            {...register("gender")}>
+                            <option value="">Select an option</option>
+                            <option value="female">female</option>
+                            <option value="male">male</option>
+                            <option value="other">other</option>
+                        </select>
+                    </div>
                     <div>
                         <input placeholder='Phone Number' type='text'
                             className='block sphere-secondary-bg w-full py-3 px-5 rounded-none'
-                            {...register("phone", { required: true })} />
-                        {errors.phone && <small>This field is required</small>}
+                            {...register("phone")} />
                     </div>
                     <div>
                         <input placeholder='address' type='text'
                             className='block sphere-secondary-bg w-full py-3 px-5 rounded-none'
-                            {...register("address", { required: true })} />
-                        {errors.address && <small>This field is required</small>}
+                            {...register("address")} />
                     </div>
                     <input className='cursor-pointer sphere-primary-bg sphere-secondary font-semibold uppercase py-3' type="submit" />
                 </form>
