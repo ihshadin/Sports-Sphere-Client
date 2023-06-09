@@ -1,16 +1,24 @@
 import React from 'react';
-import { BsGoogle } from 'react-icons/bs';
-import googleBtnImg from '../../assets/images/google-btn.png'
-import gitHubBtnImg from '../../assets/images/github-btn.png'
+import { FcGoogle } from 'react-icons/fc';
+import useAuth from '../../hooks/useAuth';
 
 const LoginWithSocial = () => {
+    const { googleLogin } = useAuth();
+
+    const handleGoogleLogin = () => {
+        googleLogin()
+            .then(result => {
+                console.log(result.user);
+            })
+            .catch(error => {
+                console.log(error);
+            })
+    }
     return (
         <div className='flex justify-center gap-5'>
-            <span className='sphere-primary-bg p-3 inline-block rounded-full text-white hover:text-[#445760] border border-spacing-2 hover:bg-white cursor-pointer'>
-                <BsGoogle className='h-5 w-5 ' />
+            <span onClick={handleGoogleLogin} className='p-4 inline-block rounded-full text-white hover:text-[#445760] border-2 border-[#445760] hover:bg-white cursor-pointer'>
+                <FcGoogle className='h-6 w-6 ' />
             </span>
-            {/* <img src={googleBtnImg} alt="" />
-            <img src={gitHubBtnImg} alt="" /> */}
         </div>
     );
 };
