@@ -2,7 +2,7 @@ import React from 'react';
 
 const PopularInstructors = () => {
     return (
-        <section className='py-10 md:py-20'>
+        <section className='py-10 md:py-20 overflow-hidden'>
             <div className='px-3 xl:px-0 xl:container mx-auto'>
                 <h2 className='text-3xl md:text-5xl font-playfair text-center' data-aos="zoom-in">Our Instructors</h2>
                 <p className='max-w-xl w-full text-center mx-auto mt-2 mb-10' data-aos="fade-up">Learn from the best with our highly acclaimed instructors who bring expertise and passion to every class.</p>

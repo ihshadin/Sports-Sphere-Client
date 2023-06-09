@@ -1,7 +1,7 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { AiOutlineAlignLeft } from 'react-icons/ai'
-import { Link } from 'react-router-dom';
+import { Link, Outlet } from 'react-router-dom';
 import logo from '../../../assets/images/logo.png'
 import './Dashboard.css'
 
@@ -11,16 +11,15 @@ const Dashboard = () => {
             <Helmet>
                 <title>Sports Sphere | Dashboard</title>
             </Helmet>
-            <section className='xl:container px-2 md:px-0'>
+            <section className='xl:container mx-auto'>
                 <div>
                     <div className="drawer lg:drawer-open">
                         <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
                         <div className="drawer-content">
-                            <label htmlFor="my-drawer-2" className="drawer-button lg:hidden">
-                                <AiOutlineAlignLeft />
+                            <label htmlFor="my-drawer-2" className="drawer-button lg:hidden cursor-pointer flex items-center gap-3 font-playfair border px-5 py-2 absolute left-2 md:left-5 top-5">
+                                <AiOutlineAlignLeft /> <span>Open Menu</span>
                             </label>
-                            {/* Page content here */}
-
+                            <Outlet />
                         </div>
                         <div className="drawer-side">
                             <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
@@ -29,8 +28,10 @@ const Dashboard = () => {
                                     <Link className='p-0' to='/'><img className='w-24' src={logo} alt="" /></Link>
                                     <h3 className='p-0 font-playfair text-white text-2xl'>Sports Sphere</h3>
                                 </li>
-                                <li><Link className='sphere-secondary-bg mt-3 py-4 px-5 rounded-none text-lg font-medium border border-[#ECF8F9] hover:text-[#ECF8F9]'>My Selected Classes</Link></li>
-                                <li><Link className='sphere-secondary-bg mt-3 py-4 px-5 rounded-none text-lg font-medium border border-[#ECF8F9] hover:text-[#ECF8F9]'>My Enrolled Classes</Link></li>
+                                <li><Link className='sphere-secondary-bg mt-3 py-4 px-5 rounded-none text-lg font-medium border border-[#ECF8F9] hover:text-[#ECF8F9] focus:text-[#ECF8F9]' to='/dashboard/selected-classes'>My Selected Classes</Link></li>
+                                <li><Link className='sphere-secondary-bg mt-3 py-4 px-5 rounded-none text-lg font-medium border border-[#ECF8F9] hover:text-[#ECF8F9] focus:text-[#ECF8F9]' to='/dashboard/enrolled-classes'>My Enrolled Classes</Link></li>
+                                <li><Link className='sphere-secondary-bg mt-3 py-4 px-5 rounded-none text-lg font-medium border border-[#ECF8F9] hover:text-[#ECF8F9] focus:text-[#ECF8F9]' to='/dashboard/add-new-class'>Add New Class</Link></li>
+                                <li><Link className='sphere-secondary-bg mt-3 py-4 px-5 rounded-none text-lg font-medium border border-[#ECF8F9] hover:text-[#ECF8F9] focus:text-[#ECF8F9]' to='/dashboard/my-classes'>My Classes</Link></li>
                             </ul>
                         </div>
                     </div>

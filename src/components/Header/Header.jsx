@@ -23,7 +23,7 @@ const Header = () => {
                         <label tabIndex={0} className="btn btn-ghost px-0 mr-2 lg:hidden">
                             <TbAlignLeft className='h-6 w-6' />
                         </label>
-                        <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 px-2 py-8 left-2 right-2 shadow bg-base-100 rounded-box text-[#445760]">
+                        <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 px-2 py-8 left-2 right-2 shadow bg-base-100 rounded-box text-[#445760] !z-10">
                             {menuList}
                         </ul>
                     </div>

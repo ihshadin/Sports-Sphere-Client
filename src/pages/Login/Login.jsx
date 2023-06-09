@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import LoginWithSocial from '../../components/LoginWithSocial/LoginWithSocial';
 
 const Login = () => {
-    const { register, handleSubmit, watch, formState: { errors } } = useForm();
+    const { register, handleSubmit, formState: { errors } } = useForm();
 
     const handleLogin = (data) => {
         console.log(data);

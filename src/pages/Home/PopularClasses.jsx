@@ -3,7 +3,7 @@ import React from 'react';
 const PopularClasses = () => {
 
     return (
-        <section className='py-8 md:py-12'>
+        <section className='py-8 md:py-12 overflow-hidden'>
             <div className='px-3 xl:px-0 xl:container mx-auto'>
                 <h2 className='text-3xl md:text-5xl font-playfair text-center' data-aos="zoom-in">Popular Classes</h2>
                 <p className='max-w-xl w-full text-center mx-auto mt-2 mb-10' data-aos="fade-up">Explore our highly sought-after classes designed to enhance your skills and elevate your performance.</p>

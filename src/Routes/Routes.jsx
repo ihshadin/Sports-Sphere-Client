@@ -7,6 +7,10 @@ import ErrorPage from "../pages/ErrorPage/ErrorPage";
 import Login from "../pages/Login/Login";
 import Registration from "../pages/Registration/Registration";
 import Dashboard from "../pages/Dashboard/Dashboard/Dashboard";
+import SeletedClasses from "../pages/Dashboard/Student/SelectedClasses/SeletedClasses";
+import EnrolledClasses from "../pages/Dashboard/Student/EnrolledClasses/EnrolledClasses";
+import AddNewClass from "../pages/Dashboard/Instructor/AddNewClass/AddNewClass";
+import MyClasses from "../pages/Dashboard/Instructor/MyClasses/MyClasses";
 
 const router = createBrowserRouter([
     {
@@ -39,6 +43,24 @@ const router = createBrowserRouter([
     {
         path: 'dashboard',
         element: <Dashboard />,
+        children: [
+            {
+                path: 'selected-classes',
+                element: <SeletedClasses />,
+            },
+            {
+                path: 'enrolled-classes',
+                element: <EnrolledClasses />,
+            },
+            {
+                path: 'add-new-class',
+                element: <AddNewClass />,
+            },
+            {
+                path: 'my-classes',
+                element: <MyClasses />,
+            }
+        ]
     }
 ])
 
