@@ -28,3 +28,13 @@ body {
     background-color: #445760;
     color: white;
 }
+.testimonial-text-arrow::after {
+    content: "";
+    position:absolute;
+    top: 86%;
+    left: 50%;
+    transform: translateX(-50%) rotate(45deg);
+    background-color: #e2e8f0;
+    width: 25px;
+    height: 25px;
+}

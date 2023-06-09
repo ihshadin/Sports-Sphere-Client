@@ -11,8 +11,8 @@ const Banner = () => {
     return (
         <>
             <Swiper
-                dir="ltr"
                 navigation={true}
+                loop={true}
                 autoplay={{
                     delay: 2500,
                     disableOnInteraction: false,

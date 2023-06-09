@@ -13,6 +13,7 @@ const Header = () => {
         <li><NavLink to='/classes' className={({ isActive }) => isActive ? activeClasses : defaultClasses}>Class</NavLink></li>
         <li><NavLink to='/login' className={({ isActive }) => isActive ? activeClasses : defaultClasses}>Login</NavLink></li>
         <li><NavLink to='/registration' className={({ isActive }) => isActive ? activeClasses : defaultClasses}>Registration</NavLink></li>
+        <li><NavLink to='/dashboard' className={({ isActive }) => isActive ? activeClasses : defaultClasses}>Dashboard</NavLink></li>
     </>
     return (
         <header className='sphere-primary-bg'>
