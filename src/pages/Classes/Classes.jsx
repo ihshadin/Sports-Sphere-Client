@@ -12,6 +12,7 @@ const Classes = () => {
 
     const handleSelectClass = item => {
         const seClaInfo = {
+            stuEmail: user?.email,
             itemId: item._id,
             name: item.className,
             image: item.classImage,
