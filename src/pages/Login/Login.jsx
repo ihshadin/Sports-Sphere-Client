@@ -3,12 +3,20 @@ import { Helmet } from 'react-helmet-async';
 import { useForm } from "react-hook-form";
 import { Link } from 'react-router-dom';
 import LoginWithSocial from '../../components/LoginWithSocial/LoginWithSocial';
+import useAuth from '../../hooks/useAuth';
 
 const Login = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
+    const { signIn } = useAuth();
 
     const handleLogin = (data) => {
-        console.log(data);
+        signIn(data.email, data.password)
+            .then(result => {
+                const loggedUser = result.user;
+            })
+            .catch(error => {
+                console.log(error?.message);
+            })
     }
     return (
         <section className='py-10 md:py-16'>

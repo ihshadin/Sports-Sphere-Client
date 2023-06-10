@@ -1,14 +1,32 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import LoginWithSocial from '../../components/LoginWithSocial/LoginWithSocial';
 import { Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
+import useAuth from '../../hooks/useAuth';
+import { updateProfile } from 'firebase/auth';
 
 const Registration = () => {
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
+    const { createUser, signIn } = useAuth();
 
     const handleRegister = (data) => {
-        console.log(data);
+        createUser(data.email, data.password)
+            .then(result => {
+                const createdUser = result.user;
+                updatedUserData(createdUser, data.fullName, data.photo)
+            })
+            .catch(error => {
+                console.log(error?.message);
+            })
+    }
+    const updatedUserData = (loggedUser, userName, photo) => {
+        updateProfile(loggedUser, {
+            displayName: userName,
+            photoURL: photo,
+        })
+            .then(() => { })
+            .catch(error => { })
     }
     return (
         <section className='py-10 md:py-16'>

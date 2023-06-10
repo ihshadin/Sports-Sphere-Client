@@ -2,8 +2,16 @@ import React from 'react';
 import logo from '../../assets/images/logo.png'
 import { Link, NavLink } from 'react-router-dom';
 import { TbAlignLeft } from 'react-icons/tb'
+import useAuth from '../../hooks/useAuth';
 
 const Header = () => {
+    const { user, logOut } = useAuth();
+
+    const handleLogOut = () => {
+        logOut()
+            .then(() => { })
+            .catch(error => console.log(error))
+    }
 
     const defaultClasses = 'text-lg px-8 py-2 hover:bg-[#ECF8F9] hover:text-[#445760] font-medium rounded-none';
     const activeClasses = 'text-lg px-8 py-2 !bg-[#ECF8F9] sphere-primary font-medium rounded-none';
@@ -11,8 +19,6 @@ const Header = () => {
         <li><NavLink to='/' className={({ isActive }) => isActive ? activeClasses : defaultClasses}>Home</NavLink></li>
         <li><NavLink to='/instructors' className={({ isActive }) => isActive ? activeClasses : defaultClasses}>Instructors</NavLink></li>
         <li><NavLink to='/classes' className={({ isActive }) => isActive ? activeClasses : defaultClasses}>Class</NavLink></li>
-        <li><NavLink to='/login' className={({ isActive }) => isActive ? activeClasses : defaultClasses}>Login</NavLink></li>
-        <li><NavLink to='/registration' className={({ isActive }) => isActive ? activeClasses : defaultClasses}>Registration</NavLink></li>
         <li><NavLink to='/dashboard' className={({ isActive }) => isActive ? activeClasses : defaultClasses}>Dashboard</NavLink></li>
     </>
     return (
@@ -28,7 +34,7 @@ const Header = () => {
                         </ul>
                     </div>
                     <Link to='/'>
-                        <img className='w-14 md:w-28' src={logo} alt="" />
+                        <img className='w-16 md:w-28' src={logo} alt="" />
                     </Link>
                 </div>
                 <div className="navbar-center hidden lg:flex">
@@ -37,7 +43,17 @@ const Header = () => {
                     </ul>
                 </div>
                 <div className="navbar-end">
-                    <a className="btn">Button</a>
+                    {
+                        user ?
+                            <>
+                                <button onClick={handleLogOut} className='text-lg mr-8 font-medium rounded-none'>LogOut</button>
+                                <img className='w-14 h-14 rounded-full object-cover' src={user.photoURL} alt={user.displayName} />
+                            </>
+                            : <div>
+                                <Link to='/registration' className='text-lg px-5 py-2 hover:bg-[#ECF8F9] hover:text-[#445760] font-medium rounded-none'>Sign Up</Link>
+                                <Link to='/login' className='text-lg px-5 py-2 hover:bg-[#ECF8F9] hover:text-[#445760] font-medium rounded-none'>Sign In</Link>
+                            </div>
+                    }
                 </div>
             </div>
         </header>
