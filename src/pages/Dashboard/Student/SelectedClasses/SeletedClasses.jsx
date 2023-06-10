@@ -4,8 +4,25 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { FaTrashAlt } from "react-icons/fa";
 import { Link } from 'react-router-dom';
+import useAuth from '../../../../hooks/useAuth';
+import { useQuery } from '@tanstack/react-query';
 
 const SeletedClasses = () => {
+    const { user } = useAuth();
+
+    const { isLoading, data: selectedClasses = [] } = useQuery({
+        queryKey: ['selectClasses', user?.email],
+        queryFn: async () => {
+            const res = await fetch(`http://localhost:5000/selectClasses?email=${user?.email}`)
+            return res.json();
+        }
+    })
+
+
+
+
+
+
     useEffect(() => {
         AOS.init();
     }, [])
@@ -42,7 +59,8 @@ const SeletedClasses = () => {
                                     <span className='py-2 px-5 bg-red-500 text-white inline-block cursor-pointer'><FaTrashAlt /></span>
                                 </td>
                             </tr>
-                            <tr className='font-medium'>
+
+                            {/* <tr className='font-medium'>
                                 <td>1</td>
                                 <td>Boxing learning course by mohammad ali</td>
                                 <td>Mohammad Ali</td>
@@ -104,7 +122,7 @@ const SeletedClasses = () => {
                                 <td className='text-center'>
                                     <span className='py-2 px-5 bg-red-600 text-white inline-block cursor-pointer'><FaTrashAlt /></span>
                                 </td>
-                            </tr>
+                            </tr> */}
                         </tbody>
                     </table>
                 </div>
