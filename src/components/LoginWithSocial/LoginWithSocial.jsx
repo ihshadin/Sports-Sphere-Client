@@ -2,14 +2,37 @@ import React from 'react';
 import { FcGoogle } from 'react-icons/fc';
 import { FaFacebookF } from 'react-icons/fa';
 import useAuth from '../../hooks/useAuth';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const LoginWithSocial = () => {
     const { googleLogin, facebookLogin } = useAuth();
+    const location = useLocation();
+    const navigate = useNavigate();
+    const from = location.state?.from?.pathname || '/';
+    console.log(from);
 
     const handleGoogleLogin = () => {
         googleLogin()
             .then(result => {
-                console.log(result.user);
+                const user = result.user;
+                const saveUser = {
+                    name: user.displayName,
+                    email: user.email,
+                    photo: user.photoURL,
+                    phoneNumber: user.phoneNumber,
+                    role: 'student',
+                }
+                fetch('http://localhost:5000/user', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(saveUser)
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        navigate(from, { replace: true })
+                    })
             })
             .catch(error => {
                 console.log(error);
@@ -20,7 +43,24 @@ const LoginWithSocial = () => {
         facebookLogin()
             .then(result => {
                 const user = result.user;
-                console.log(user);
+                const saveUser = {
+                    name: user.displayName,
+                    email: user.email,
+                    photo: user.photoURL,
+                    phoneNumber: user.phoneNumber,
+                    role: 'student',
+                }
+                fetch('http://localhost:5000/user', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(saveUser)
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        navigate(from, { replace: true })
+                    })
             })
             .catch(error => {
                 console.log(error);

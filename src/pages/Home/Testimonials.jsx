@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination } from "swiper";
 
@@ -8,6 +8,14 @@ import "swiper/css/effect-coverflow";
 import "swiper/css/pagination";
 
 const Testimonials = () => {
+    const [reviews, setReviews] = useState([]);
+    useEffect(() => {
+        fetch('http://localhost:5000/reviews')
+            .then(res => res.json())
+            .then(data => {
+                setReviews(data);
+            })
+    }, [])
     return (
         <section className='py-10 md:py-20'>
             <div className='px-3 xl:px-0 xl:container mx-auto'>
@@ -36,31 +44,22 @@ const Testimonials = () => {
                     modules={[Pagination]}
                     className="mySwiper"
                 >
-                    <SwiperSlide>
-                        <div>
-                            <p className='testimonial-text-arrow relative bg-slate-200 px-3 py-5 rounded-lg'>
-                                Discover the heartfelt feedback from our delighted clients,
-                                sharing their remarkable experiences and incredible progress.
-                            </p>
-                            <div className='flex items-center justify-center gap-5 mt-6'>
-                                <img className='w-16 h-16 object-cover rounded-full' src="https://www.pexels.com/photo/771742/download/" alt="" />
-                                <h4 className='font-playfair text-xl md:text-2xl'>Mohammad Ali</h4>
-                            </div>
-                        </div>
-                    </SwiperSlide>
-                    <SwiperSlide>
-                        <div>
-                            <p className='testimonial-text-arrow relative bg-slate-200 px-3 py-5 rounded-lg'>
-                                Discover the heartfelt feedback from our delighted clients,
-                                sharing their remarkable experiences and incredible progress.
-                            </p>
-                            <div className='flex items-center justify-center gap-5 mt-6'>
-                                <img className='w-16 h-16 object-cover rounded-full' src="https://www.pexels.com/photo/771742/download/" alt="" />
-                                <h4 className='font-playfair text-2xl'>Mohammad Ali</h4>
-                            </div>
-                        </div>
-                    </SwiperSlide>
-                    <SwiperSlide>
+                    {
+                        reviews.map(review => (
+                            <SwiperSlide key={review._id}>
+                                <div>
+                                    <p className='testimonial-text-arrow relative bg-slate-200 px-3 py-5 rounded-lg'>
+                                        {review.review}
+                                    </p>
+                                    <div className='flex items-center justify-center gap-5 mt-6'>
+                                        <img className='w-16 h-16 object-cover rounded-full' src={review.profilePic} alt="" />
+                                        <h4 className='font-playfair text-xl md:text-2xl'>{review.name}</h4>
+                                    </div>
+                                </div>
+                            </SwiperSlide>
+                        ))
+                    }
+                    {/* <SwiperSlide>
                         <div>
                             <p className='testimonial-text-arrow relative bg-slate-200 px-3 py-5 rounded-lg'>
                                 Discover the heartfelt feedback from our delighted clients,
@@ -96,6 +95,18 @@ const Testimonials = () => {
                             </div>
                         </div>
                     </SwiperSlide>
+                    <SwiperSlide>
+                        <div>
+                            <p className='testimonial-text-arrow relative bg-slate-200 px-3 py-5 rounded-lg'>
+                                Discover the heartfelt feedback from our delighted clients,
+                                sharing their remarkable experiences and incredible progress.
+                            </p>
+                            <div className='flex items-center justify-center gap-5 mt-6'>
+                                <img className='w-16 h-16 object-cover rounded-full' src="https://www.pexels.com/photo/771742/download/" alt="" />
+                                <h4 className='font-playfair text-2xl'>Mohammad Ali</h4>
+                            </div>
+                        </div>
+                    </SwiperSlide> */}
                 </Swiper >
             </div>
         </section>

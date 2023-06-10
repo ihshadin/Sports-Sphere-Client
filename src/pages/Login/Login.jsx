@@ -1,18 +1,34 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useForm } from "react-hook-form";
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import LoginWithSocial from '../../components/LoginWithSocial/LoginWithSocial';
 import useAuth from '../../hooks/useAuth';
+import Swal from 'sweetalert2';
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
 
 const Login = () => {
-    const { register, handleSubmit, formState: { errors } } = useForm();
+    const [showPassword, setShowPassword] = useState(false);
+    const { register, handleSubmit, reset, formState: { errors } } = useForm();
     const { signIn } = useAuth();
+    const location = useLocation();
+    const navigate = useNavigate();
+    const from = location.state?.from?.pathname || '/'
 
     const handleLogin = (data) => {
         signIn(data.email, data.password)
             .then(result => {
                 const loggedUser = result.user;
+                reset();
+                Swal.fire({
+                    title: 'Success!',
+                    text: "You are successfully Login!",
+                    icon: 'success',
+                    confirmButtonColor: '#14b8a6',
+                    confirmButtonText: 'OK'
+                }).then((result) => {
+                    navigate(from, { replace: true })
+                })
             })
             .catch(error => {
                 console.log(error?.message);
@@ -32,11 +48,14 @@ const Login = () => {
                             {...register("email", { required: true })} />
                         {errors.email && <small>You have to add Email</small>}
                     </div>
-                    <div>
-                        <input placeholder='Password' type='text'
+                    <div className='relative'>
+                        <input placeholder='Password' type={showPassword ? 'text' : 'password'}
                             className='block sphere-secondary-bg w-full py-3 px-5 rounded-none'
                             {...register("password", { required: true })} />
                         {errors.password && <small>You have to add Password</small>}
+                        <span className='text-2xl sphere-primary opacity-50 cursor-pointer absolute top-1/2 -translate-y-1/2 right-5' onClick={() => setShowPassword(!showPassword)}>
+                            {showPassword ? <FaEyeSlash /> : <FaEye />}
+                        </span>
                     </div>
                     <input className='cursor-pointer sphere-primary-bg sphere-secondary font-semibold uppercase py-3' type="submit" />
                 </form>
