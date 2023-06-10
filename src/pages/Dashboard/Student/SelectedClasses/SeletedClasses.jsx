@@ -13,13 +13,10 @@ const SeletedClasses = () => {
     const { isLoading, data: selectedClasses = [] } = useQuery({
         queryKey: ['selectClasses', user?.email],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/selectClasses?email=${user?.email}`)
+            const res = await fetch(`http://localhost:5000/seClasses?email=${user?.email}`)
             return res.json();
         }
     })
-
-
-
 
 
 
@@ -39,6 +36,7 @@ const SeletedClasses = () => {
                     </p>
                 </div>
                 <div className="overflow-x-auto">
+                    {selectedClasses.length}
                     <table className="table w-full">
                         <thead>
                             <tr className='text-lg sphere-primary-bg text-white'>

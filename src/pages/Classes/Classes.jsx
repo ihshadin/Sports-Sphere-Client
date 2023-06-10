@@ -11,13 +11,22 @@ const Classes = () => {
     const navigate = useNavigate();
 
     const handleSelectClass = item => {
+        const seClaInfo = {
+            itemId: item._id,
+            name: item.className,
+            image: item.classImage,
+            insName: item.instructorName,
+            insEmail: item.instructorEmail,
+            price: item.price,
+            enStu: item.enrolledStudent,
+        }
         if (user) {
-            fetch('http://localhost:5000/selectClasses', {
+            fetch('http://localhost:5000/seClasses', {
                 method: "POST",
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify(item)
+                body: JSON.stringify(seClaInfo)
             })
                 .then(res => res.json())
                 .then(data => {
