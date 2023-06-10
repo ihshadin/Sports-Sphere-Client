@@ -12,7 +12,7 @@ const Classes = () => {
 
     const handleSelectClass = item => {
         if (user) {
-            fetch('http://localhost:5000/carts', {
+            fetch('http://localhost:5000/selectClasses', {
                 method: "POST",
                 headers: {
                     'Content-Type': 'application/json'
