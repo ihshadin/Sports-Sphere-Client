@@ -5,13 +5,25 @@ import 'aos/dist/aos.css';
 import { FaTrashAlt } from "react-icons/fa";
 import { Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
+import useAuth from '../../../../hooks/useAuth';
 
 const AddNewClass = () => {
+    const { user } = useAuth();
 
     const { register, handleSubmit, formState: { errors } } = useForm();
 
     const handleAddNewClass = (data) => {
-        console.log(data);
+        const sendData = {
+            instructorName: user.displayName,
+            instructorName: user.email,
+            className: data.className,
+            classImage: data.photo,
+            availableSeats: parseInt(data.seats),
+            price: parseInt(data.price),
+            enrolledStudent: 0,
+            status: 'pending',
+            feedback: null
+        }
     }
 
     useEffect(() => {
@@ -34,11 +46,11 @@ const AddNewClass = () => {
                         <div className='flex flex-col md:flex-row items-center gap-5 text-lg font-medium'>
                             <div className='w-full'>
                                 <label className='text-base'>Your Name</label>
-                                <p className='text-lg text-gray-500 -mt-1'>Mohammad Ali</p>
+                                <p className='text-lg text-gray-500 -mt-1'>{user.displayName}</p>
                             </div>
                             <div className='w-full'>
                                 <label className='text-base'>Your E-mail</label>
-                                <p className='text-lg text-gray-500 -mt-1'>mohammad@ali.com</p>
+                                <p className='text-lg text-gray-500 -mt-1'>{user.email}</p>
                             </div>
                         </div>
                         <div>
@@ -67,7 +79,7 @@ const AddNewClass = () => {
                                 {errors.price && <small>This field is required</small>}
                             </div>
                         </div>
-                        <input className='cursor-pointer sphere-primary-bg sphere-secondary font-semibold uppercase py-4' type="submit" value='Add New' />
+                        <input className='cursor-pointer sphere-primary-bg sphere-secondary font-semibold uppercase py-4' type="submit" value='Add New Class' />
                     </form>
                 </div>
             </div>
