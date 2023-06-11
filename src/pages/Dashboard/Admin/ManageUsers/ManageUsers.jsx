@@ -4,6 +4,7 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 import useAxiosSecure from '../../../../hooks/useAxiosSecure';
 import { useQuery } from '@tanstack/react-query';
+import Swal from 'sweetalert2';
 
 const ManageUsers = () => {
     const [axiosSecure] = useAxiosSecure();
@@ -15,6 +16,21 @@ const ManageUsers = () => {
             return res.data;
         }
     })
+
+    const handleUserRoleChange = (id, role) => {
+        axiosSecure.put(`/users/instructor/${id}`)
+            .then((res) => {
+                console.log(res);
+                Swal.fire({
+                    title: 'Success!',
+                    text: 'User role updated successfully.',
+                    icon: 'success',
+                    confirmButtonColor: '#14b8a6',
+                    confirmButtonText: 'OK'
+                }).then(() => {
+                });
+            })
+    }
 
     // AOS Package
     useEffect(() => {
@@ -54,8 +70,16 @@ const ManageUsers = () => {
                                         <td>{item.email}</td>
                                         <td>{item.role}</td>
                                         <td className='flex justify-center gap-2'>
-                                            <span disabled={item.role === 'instructor' ? true : false} className='btn sphere-primary-bg text-white rounded-none'>Make Instructor</span>
-                                            <span disabled={item.role === 'admin' ? true : false} className='btn sphere-primary-bg text-white rounded-none'>Make Admin</span>
+                                            <span
+                                                onClick={() => handleUserRoleChange(item._id, 'instructor')}
+                                                disabled={item.role === 'instructor' ? true : false}
+                                                className='btn sphere-primary-bg text-white rounded-none'
+                                            >Make Instructor</span>
+                                            <span
+                                                onClick={() => handleUserRoleChange(item._id, 'admin')}
+                                                disabled={item.role === 'admin' ? true : false}
+                                                className='btn sphere-primary-bg text-white rounded-none'
+                                            >Make Admin</span>
                                         </td>
                                     </tr>
                                 ))
