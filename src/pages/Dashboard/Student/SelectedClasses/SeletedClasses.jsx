@@ -86,7 +86,7 @@ const SeletedClasses = () => {
                                 selClasses.map((selClass, i) => (
                                     <tr key={selClass._id} className='font-medium'>
                                         <td>{i + 1}</td>
-                                        <td><img className='w-24 h-14' src={selClass.image} alt="" /></td>
+                                        <td><img className='w-24 h-14 object-cover' src={selClass.image} alt="" /></td>
                                         <td>{selClass.name}</td>
                                         <td>{selClass.insName}</td>
                                         <td className='text-right'>$<span>{selClass.price}</span></td>
@@ -97,7 +97,7 @@ const SeletedClasses = () => {
                                             ><FaTrashAlt /></span>
                                         </td>
                                         <td className='text-center'>
-                                            <span className='py-2 px-5 bg-red-500 text-white inline-block cursor-pointer'>Pay</span>
+                                            <Link to='/dashboard/payment'><span className='py-2 px-5 bg-teal-500 text-white inline-block cursor-pointer'>Pay</span></Link>
                                         </td>
                                     </tr>
                                 ))

@@ -20,7 +20,7 @@ const Header = () => {
     const menuList = <>
         <li><NavLink to='/' className={({ isActive }) => isActive ? activeClasses : defaultClasses}>Home</NavLink></li>
         <li><NavLink to='/instructors' className={({ isActive }) => isActive ? activeClasses : defaultClasses}>Instructors</NavLink></li>
-        <li><NavLink to='/classes' className={({ isActive }) => isActive ? activeClasses : defaultClasses}>Class</NavLink></li>
+        <li><NavLink to='/classes' className={({ isActive }) => isActive ? activeClasses : defaultClasses}>Classes</NavLink></li>
         {
             user && <li><NavLink to={
                 userRole.role === 'student' && '/dashboard/selected-classes' ||

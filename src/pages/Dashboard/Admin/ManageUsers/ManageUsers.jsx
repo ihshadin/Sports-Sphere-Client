@@ -9,7 +9,7 @@ import Swal from 'sweetalert2';
 const ManageUsers = () => {
     const [axiosSecure] = useAxiosSecure();
 
-    const { data: users = [] } = useQuery({
+    const { data: users = [], refetch } = useQuery({
         queryKey: ['users'],
         queryFn: async () => {
             const res = await axiosSecure.get('/users');
@@ -18,17 +18,19 @@ const ManageUsers = () => {
     })
 
     const handleUserRoleChange = (id, role) => {
-        axiosSecure.put(`/users/instructor/${id}`)
+        axiosSecure.put(`/users/${role}/${id}`)
             .then((res) => {
-                console.log(res);
-                Swal.fire({
-                    title: 'Success!',
-                    text: 'User role updated successfully.',
-                    icon: 'success',
-                    confirmButtonColor: '#14b8a6',
-                    confirmButtonText: 'OK'
-                }).then(() => {
-                });
+                if (res.data.modifiedCount > 0) {
+                    refetch();
+                    Swal.fire({
+                        title: 'Success!',
+                        text: 'User role updated successfully.',
+                        icon: 'success',
+                        confirmButtonColor: '#14b8a6',
+                        confirmButtonText: 'OK'
+                    }).then(() => {
+                    });
+                }
             })
     }
 
@@ -43,9 +45,9 @@ const ManageUsers = () => {
             </Helmet>
             <div className='py-20 md:py-20 px-2 md:px-5'>
                 <div>
-                    <h2 className='text-3xl md:text-5xl font-playfair text-center' data-aos="zoom-in">Enrolled Classes</h2>
+                    <h2 className='text-3xl md:text-5xl font-playfair text-center' data-aos="zoom-in">Update Users</h2>
                     <p className='max-w-xl w-full text-center mx-auto mt-2 mb-10' data-aos="fade-up">
-                        Discover the classes you are currently enrolled in, where you'll embark on an exciting journey of learning and growth.
+                        View the latest user updates and stay informed about the activities and achievements of our vibrant community.
                     </p>
                 </div>
                 <div className="overflow-x-auto">
@@ -62,23 +64,23 @@ const ManageUsers = () => {
                         </thead>
                         <tbody>
                             {
-                                users.map(item => (
+                                users.map((item, i) => (
                                     <tr key={item._id} className='font-medium'>
-                                        <td>1</td>
+                                        <td>{i + 1}</td>
                                         <td><img src={item.photo} className='w-16 h-16 object-cover rounded-full' alt="" /></td>
                                         <td>{item.name}</td>
                                         <td>{item.email}</td>
-                                        <td>{item.role}</td>
+                                        <td className='capitalize'>{item.role}</td>
                                         <td className='flex justify-center gap-2'>
                                             <span
                                                 onClick={() => handleUserRoleChange(item._id, 'instructor')}
                                                 disabled={item.role === 'instructor' ? true : false}
-                                                className='btn sphere-primary-bg text-white rounded-none'
+                                                className='btn sphere-primary-bg text-white rounded-none hover:bg-[#445760aa]'
                                             >Make Instructor</span>
                                             <span
                                                 onClick={() => handleUserRoleChange(item._id, 'admin')}
                                                 disabled={item.role === 'admin' ? true : false}
-                                                className='btn sphere-primary-bg text-white rounded-none'
+                                                className='btn sphere-primary-bg text-white rounded-none hover:bg-[#445760aa]'
                                             >Make Admin</span>
                                         </td>
                                     </tr>

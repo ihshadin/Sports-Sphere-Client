@@ -64,7 +64,7 @@ const MyClasses = () => {
                                         <td className='font-semibold text-center uppercase'>{item.status}</td>
                                         <td className='text-center'>
                                             {
-                                                item.status === 'denied'
+                                                item.status === 'deny'
                                                     ? <>
                                                         <button className="rounded-none py-2 px-5 h-auto sphere-primary-bg text-white" onClick={() => window.my_modal_1.showModal()}>FeedBack</button>
                                                         <dialog id="my_modal_1" className="modal">
