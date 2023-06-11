@@ -12,6 +12,8 @@ import EnrolledClasses from "../pages/Dashboard/Student/EnrolledClasses/Enrolled
 import AddNewClass from "../pages/Dashboard/Instructor/AddNewClass/AddNewClass";
 import MyClasses from "../pages/Dashboard/Instructor/MyClasses/MyClasses";
 import PrivateRoute from "./PrivateRoute";
+import StudentRoute from "./StudentRoute";
+import InstructorRoute from "./InstructorRoute";
 
 const router = createBrowserRouter([
     {
@@ -47,19 +49,19 @@ const router = createBrowserRouter([
         children: [
             {
                 path: 'selected-classes',
-                element: <SeletedClasses />,
+                element: <StudentRoute><SeletedClasses /></StudentRoute>,
             },
             {
                 path: 'enrolled-classes',
-                element: <EnrolledClasses />,
+                element: <StudentRoute><EnrolledClasses /></StudentRoute>,
             },
             {
                 path: 'add-new-class',
-                element: <AddNewClass />,
+                element: <InstructorRoute><AddNewClass /></InstructorRoute>,
             },
             {
                 path: 'my-classes',
-                element: <MyClasses />,
+                element: <InstructorRoute><MyClasses /></InstructorRoute>,
             }
         ]
     }

@@ -3,9 +3,11 @@ import logo from '../../assets/images/logo.png'
 import { Link, NavLink } from 'react-router-dom';
 import { TbAlignLeft } from 'react-icons/tb'
 import useAuth from '../../hooks/useAuth';
+import useUserRole from '../../hooks/useUserRole';
 
 const Header = () => {
     const { user, logOut } = useAuth();
+    const [userRole] = useUserRole();
 
     const handleLogOut = () => {
         logOut()
@@ -20,7 +22,10 @@ const Header = () => {
         <li><NavLink to='/instructors' className={({ isActive }) => isActive ? activeClasses : defaultClasses}>Instructors</NavLink></li>
         <li><NavLink to='/classes' className={({ isActive }) => isActive ? activeClasses : defaultClasses}>Class</NavLink></li>
         {
-            user && <li><NavLink to='/dashboard' className={({ isActive }) => isActive ? activeClasses : defaultClasses}>Dashboard</NavLink></li>
+            user && <li><NavLink to={
+                userRole.role === 'student' && '/dashboard/selected-classes' ||
+                userRole.role === 'instructor' && '/dashboard/my-classes'
+            } className={({ isActive }) => isActive ? activeClasses : defaultClasses}>Dashboard</NavLink></li>
         }
     </>
     return (

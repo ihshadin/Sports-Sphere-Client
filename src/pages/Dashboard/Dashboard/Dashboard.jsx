@@ -5,9 +5,11 @@ import { Link, Outlet } from 'react-router-dom';
 import logo from '../../../assets/images/logo.png'
 import './Dashboard.css'
 import useAuth from '../../../hooks/useAuth';
+import useUserRole from '../../../hooks/useUserRole';
 
 const Dashboard = () => {
     const { user } = useAuth();
+    const [userRole] = useUserRole();
 
     return (
         <>
@@ -31,14 +33,19 @@ const Dashboard = () => {
                                     <Link className='p-0' to='/'><img className='w-24' src={logo} alt="" /></Link>
                                     <h3 className='p-0 font-playfair text-white text-2xl'>Sports Sphere</h3>
                                 </li>
-                                <li><Link className='sphere-secondary-bg mt-3 py-4 px-5 rounded-none text-lg font-medium border border-[#ECF8F9] hover:text-[#ECF8F9] focus:text-[#ECF8F9]' to='/dashboard/selected-classes'>My Selected Classes</Link></li>
-                                <li><Link className='sphere-secondary-bg mt-3 py-4 px-5 rounded-none text-lg font-medium border border-[#ECF8F9] hover:text-[#ECF8F9] focus:text-[#ECF8F9]' to='/dashboard/enrolled-classes'>My Enrolled Classes</Link></li>
 
+                                {/* Student Dashboard menu */}
+                                {
+                                    userRole.role === 'student' && <>
+                                        <li><Link className='sphere-secondary-bg mt-3 py-4 px-5 rounded-none text-lg font-medium border border-[#ECF8F9] hover:text-[#ECF8F9] focus:text-[#ECF8F9]' to='/dashboard/selected-classes'>My Selected Classes</Link></li>
+                                        <li><Link className='sphere-secondary-bg mt-3 py-4 px-5 rounded-none text-lg font-medium border border-[#ECF8F9] hover:text-[#ECF8F9] focus:text-[#ECF8F9]' to='/dashboard/enrolled-classes'>My Enrolled Classes</Link></li>
+                                    </>
+                                }
                                 {/* Instructor Dashboard menu */}
                                 {
-                                    user.role === 'instructor' && <>
-                                        <li><Link className='sphere-secondary-bg mt-3 py-4 px-5 rounded-none text-lg font-medium border border-[#ECF8F9] hover:text-[#ECF8F9] focus:text-[#ECF8F9]' to='/dashboard/add-new-class'>Add New Class</Link></li>
+                                    userRole.role === 'instructor' && <>
                                         <li><Link className='sphere-secondary-bg mt-3 py-4 px-5 rounded-none text-lg font-medium border border-[#ECF8F9] hover:text-[#ECF8F9] focus:text-[#ECF8F9]' to='/dashboard/my-classes'>My Classes</Link></li>
+                                        <li><Link className='sphere-secondary-bg mt-3 py-4 px-5 rounded-none text-lg font-medium border border-[#ECF8F9] hover:text-[#ECF8F9] focus:text-[#ECF8F9]' to='/dashboard/add-new-class'>Add New Class</Link></li>
                                     </>
                                 }
                             </ul>
