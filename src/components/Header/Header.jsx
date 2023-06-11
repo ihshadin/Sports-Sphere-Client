@@ -24,7 +24,8 @@ const Header = () => {
         {
             user && <li><NavLink to={
                 userRole.role === 'student' && '/dashboard/selected-classes' ||
-                userRole.role === 'instructor' && '/dashboard/my-classes'
+                userRole.role === 'instructor' && '/dashboard/my-classes' ||
+                userRole.role === 'admin' && '/dashboard/manage-classes'
             } className={({ isActive }) => isActive ? activeClasses : defaultClasses}>Dashboard</NavLink></li>
         }
     </>

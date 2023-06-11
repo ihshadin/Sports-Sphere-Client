@@ -2,20 +2,21 @@ import React, { useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
-import { FaTrashAlt } from "react-icons/fa";
-import { Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import useAuth from '../../../../hooks/useAuth';
+import useAxiosSecure from '../../../../hooks/useAxiosSecure';
+import Swal from 'sweetalert2';
 
 const AddNewClass = () => {
     const { user } = useAuth();
+    const [axiosSecure] = useAxiosSecure();
 
-    const { register, handleSubmit, formState: { errors } } = useForm();
+    const { register, handleSubmit, formState: { errors }, reset } = useForm();
 
     const handleAddNewClass = (data) => {
         const sendData = {
             instructorName: user.displayName,
-            instructorName: user.email,
+            instructorEmail: user.email,
             className: data.className,
             classImage: data.photo,
             availableSeats: parseInt(data.seats),
@@ -24,6 +25,19 @@ const AddNewClass = () => {
             status: 'pending',
             feedback: null
         }
+
+        axiosSecure.post('/classes', sendData)
+            .then(data => {
+                if (data.data.insertedId) {
+                    Swal.fire({
+                        title: 'Success!',
+                        text: 'Submit a class successfully',
+                        icon: 'success',
+                        confirmButtonText: 'Cool'
+                    })
+                    reset();
+                }
+            })
     }
 
     useEffect(() => {

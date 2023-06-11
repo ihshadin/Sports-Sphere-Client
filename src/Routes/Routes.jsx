@@ -15,6 +15,9 @@ import PrivateRoute from "./PrivateRoute";
 import StudentRoute from "./StudentRoute";
 import InstructorRoute from "./InstructorRoute";
 import UpdateClass from "../pages/Dashboard/Instructor/UpdateClass/UpdateClass";
+import ManageUsers from "../pages/Dashboard/Admin/ManageUsers/ManageUsers";
+import AdminRoute from "./AdminRoute";
+import ManageClasses from "../pages/Dashboard/Admin/ManageClasses/ManageClasses";
 
 const router = createBrowserRouter([
     {
@@ -48,6 +51,7 @@ const router = createBrowserRouter([
         path: 'dashboard',
         element: <PrivateRoute><Dashboard /></PrivateRoute>,
         children: [
+            // Student route
             {
                 path: 'selected-classes',
                 element: <StudentRoute><SeletedClasses /></StudentRoute>,
@@ -56,6 +60,7 @@ const router = createBrowserRouter([
                 path: 'enrolled-classes',
                 element: <StudentRoute><EnrolledClasses /></StudentRoute>,
             },
+            // Instructor route
             {
                 path: 'add-new-class',
                 element: <InstructorRoute><AddNewClass /></InstructorRoute>,
@@ -66,7 +71,16 @@ const router = createBrowserRouter([
             },
             {
                 path: 'update-class/:id',
-                element: <UpdateClass />
+                element: <InstructorRoute><UpdateClass /></InstructorRoute>
+            },
+            // Admin route
+            {
+                path: 'manage-classes',
+                element: <AdminRoute><ManageUsers /></AdminRoute>,
+            },
+            {
+                path: 'manage-users',
+                element: <AdminRoute><ManageClasses /></AdminRoute>
             }
         ]
     }

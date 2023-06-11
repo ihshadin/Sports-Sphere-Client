@@ -21,8 +21,9 @@ const MyClasses = () => {
             return res.data
         }
     })
+    refetch();
 
-
+    // AOS Package
     useEffect(() => {
         AOS.init();
     }, [])
