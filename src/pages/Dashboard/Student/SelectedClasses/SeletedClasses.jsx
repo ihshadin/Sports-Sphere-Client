@@ -7,18 +7,50 @@ import { Link } from 'react-router-dom';
 import useAuth from '../../../../hooks/useAuth';
 import { useQuery } from '@tanstack/react-query';
 import { BsCreditCard2FrontFill } from 'react-icons/bs';
+import Swal from 'sweetalert2';
+import useAxiosSecure from '../../../../hooks/useAxiosSecure';
 
 const SeletedClasses = () => {
-    const { user } = useAuth();
+    const { user, loading } = useAuth();
+    const [axiosSecure] = useAxiosSecure();
 
     const { refetch, data: selClasses = [] } = useQuery({
         queryKey: ['selectClasses', user?.email],
+        enabled: !loading,
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/seClasses?email=${user?.email}`)
-            return res.json();
+            const res = await axiosSecure.get(`/seClasses?email=${user?.email}`)
+            return res.data;
         }
     })
 
+    const handleDeleteSelClasses = id => {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#445760',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                fetch(`http://localhost:5000/seClasses/${id}`, {
+                    method: 'DELETE'
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        if (data.deletedCount > 0) {
+                            Swal.fire(
+                                'Deleted!',
+                                'Your file has been deleted.',
+                                'success'
+                            )
+                            refetch();
+                        }
+                    })
+            }
+        })
+    }
 
 
     useEffect(() => {
@@ -59,7 +91,10 @@ const SeletedClasses = () => {
                                         <td>{selClass.insName}</td>
                                         <td className='text-right'>$<span>{selClass.price}</span></td>
                                         <td className='text-center'>
-                                            <span className='py-2 px-5 bg-red-500 text-white inline-block cursor-pointer'><FaTrashAlt /></span>
+                                            <span
+                                                onClick={() => handleDeleteSelClasses(selClass._id)}
+                                                className='py-2 px-5 bg-red-500 text-white inline-block cursor-pointer'
+                                            ><FaTrashAlt /></span>
                                         </td>
                                         <td className='text-center'>
                                             <span className='py-2 px-5 bg-red-500 text-white inline-block cursor-pointer'>Pay</span>

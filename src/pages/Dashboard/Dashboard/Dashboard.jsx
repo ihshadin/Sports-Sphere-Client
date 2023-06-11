@@ -4,8 +4,11 @@ import { AiOutlineAlignLeft } from 'react-icons/ai'
 import { Link, Outlet } from 'react-router-dom';
 import logo from '../../../assets/images/logo.png'
 import './Dashboard.css'
+import useAuth from '../../../hooks/useAuth';
 
 const Dashboard = () => {
+    const { user } = useAuth();
+
     return (
         <>
             <Helmet>
@@ -15,7 +18,7 @@ const Dashboard = () => {
                 <div>
                     <div className="drawer lg:drawer-open">
                         <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
-                        <div className="drawer-content">
+                        <div className="drawer-content w-full">
                             <label htmlFor="my-drawer-2" className="drawer-button lg:hidden cursor-pointer flex items-center gap-3 font-playfair border px-5 py-2 absolute left-2 md:left-5 top-5">
                                 <AiOutlineAlignLeft /> <span>Open Menu</span>
                             </label>
@@ -30,8 +33,14 @@ const Dashboard = () => {
                                 </li>
                                 <li><Link className='sphere-secondary-bg mt-3 py-4 px-5 rounded-none text-lg font-medium border border-[#ECF8F9] hover:text-[#ECF8F9] focus:text-[#ECF8F9]' to='/dashboard/selected-classes'>My Selected Classes</Link></li>
                                 <li><Link className='sphere-secondary-bg mt-3 py-4 px-5 rounded-none text-lg font-medium border border-[#ECF8F9] hover:text-[#ECF8F9] focus:text-[#ECF8F9]' to='/dashboard/enrolled-classes'>My Enrolled Classes</Link></li>
-                                <li><Link className='sphere-secondary-bg mt-3 py-4 px-5 rounded-none text-lg font-medium border border-[#ECF8F9] hover:text-[#ECF8F9] focus:text-[#ECF8F9]' to='/dashboard/add-new-class'>Add New Class</Link></li>
-                                <li><Link className='sphere-secondary-bg mt-3 py-4 px-5 rounded-none text-lg font-medium border border-[#ECF8F9] hover:text-[#ECF8F9] focus:text-[#ECF8F9]' to='/dashboard/my-classes'>My Classes</Link></li>
+
+                                {/* Instructor Dashboard menu */}
+                                {
+                                    user.role === 'instructor' && <>
+                                        <li><Link className='sphere-secondary-bg mt-3 py-4 px-5 rounded-none text-lg font-medium border border-[#ECF8F9] hover:text-[#ECF8F9] focus:text-[#ECF8F9]' to='/dashboard/add-new-class'>Add New Class</Link></li>
+                                        <li><Link className='sphere-secondary-bg mt-3 py-4 px-5 rounded-none text-lg font-medium border border-[#ECF8F9] hover:text-[#ECF8F9] focus:text-[#ECF8F9]' to='/dashboard/my-classes'>My Classes</Link></li>
+                                    </>
+                                }
                             </ul>
                         </div>
                     </div>
