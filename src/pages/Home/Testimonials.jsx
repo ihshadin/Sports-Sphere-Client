@@ -48,7 +48,7 @@ const Testimonials = () => {
                         reviews.map(review => (
                             <SwiperSlide key={review._id}>
                                 <div>
-                                    <p className='testimonial-text-arrow relative bg-slate-200 px-3 py-5 rounded-lg'>
+                                    <p className='testimonial-text-arrow relative bg-slate-200 sphere-primary px-3 py-5 rounded-lg'>
                                         {review.review}
                                     </p>
                                     <div className='flex items-center justify-center gap-5 mt-6'>

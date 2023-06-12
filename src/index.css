@@ -38,3 +38,15 @@ body {
     width: 25px;
     height: 25px;
 }
+
+/* Dark Theme */
+.dark-theme {
+  background-color: #445760;
+  color: #ECF8F9;
+}
+
+/* Light Theme */
+.light-theme {
+  background-color: #ECF8F9;
+  color: #445760;
+}

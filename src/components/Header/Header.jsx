@@ -1,13 +1,14 @@
 import React from 'react';
 import logo from '../../assets/images/logo.png'
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, useLocation } from 'react-router-dom';
 import { TbAlignLeft } from 'react-icons/tb'
 import useAuth from '../../hooks/useAuth';
 import useUserRole from '../../hooks/useUserRole';
 
 const Header = () => {
-    const { user, logOut } = useAuth();
+    const { user, logOut, isDarkTheme, setIsDarkTheme } = useAuth();
     const [userRole] = useUserRole();
+    const location = useLocation();
 
     const handleLogOut = () => {
         logOut()
@@ -30,9 +31,9 @@ const Header = () => {
         }
     </>
     return (
-        <header className='sphere-primary-bg'>
-            <div className="navbar px-3 py-2 xl:px-0 xl:container mx-auto sphere-secondary">
-                <div className="navbar-start">
+        <div className={`${isDarkTheme ? ' dark-theme' : location.pathname === '/' ? 'light-theme' : 'dark-theme'}`}>
+            <div className="navbar px-3 py-2 xl:px-0 xl:container mx-auto !bg-transparent">
+                <div className="navbar-start w-auto md:w-1/2">
                     <div className="dropdown static">
                         <label tabIndex={0} className="btn btn-ghost px-0 mr-2 lg:hidden">
                             <TbAlignLeft className='h-6 w-6' />
@@ -50,21 +51,28 @@ const Header = () => {
                         {menuList}
                     </ul>
                 </div>
-                <div className="navbar-end">
+                <div className="navbar-end w-auto md:w-1/2 ml-auto">
+                    {
+                        location.pathname === '/' && (
+                            <button className={`text-lg mr-2 md:mr-8 font-medium rounded-none`} onClick={() => setIsDarkTheme(prevTheme => !prevTheme)}>
+                                {isDarkTheme ? 'Dark' : 'light'}
+                            </button>
+                        )
+                    }
                     {
                         user ?
                             <>
-                                <button onClick={handleLogOut} className='text-lg mr-8 font-medium rounded-none'>LogOut</button>
+                                <button onClick={handleLogOut} className='text-lg mr-2 md:mr-8 font-medium rounded-none'>LogOut</button>
                                 <img className='w-14 h-14 rounded-full object-cover' src={user.photoURL} alt={user.displayName} />
                             </>
                             : <div>
-                                <Link to='/registration' className='text-lg px-5 py-2 hover:bg-[#ECF8F9] hover:text-[#445760] font-medium rounded-none'>Sign Up</Link>
-                                <Link to='/login' className='text-lg px-5 py-2 hover:bg-[#ECF8F9] hover:text-[#445760] font-medium rounded-none'>Sign In</Link>
+                                <Link to='/registration' className='text-lg px-2 md:px-5 py-2 hover:bg-[#ECF8F9] hover:text-[#445760] font-medium rounded-none'>Sign Up</Link>
+                                <Link to='/login' className='text-lg px-2 md:px-5 py-2 hover:bg-[#ECF8F9] hover:text-[#445760] font-medium rounded-none'>Sign In</Link>
                             </div>
                     }
                 </div>
             </div>
-        </header>
+        </div>
     );
 };
 

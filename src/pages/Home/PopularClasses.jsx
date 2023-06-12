@@ -22,13 +22,13 @@ const PopularClasses = () => {
                 <div className='grid md:grid-cols-3 gap-6'>
                     {
                         poClasses.slice(0, 6).map(item => (
-                            <div key={item._id} className='shadow-xl bg-white py-5 md:py-8 px-2 md:px-3 rounded-3xl' data-aos="fade-right">
-                                <img className='w-full h-48 md:h-60 rounded-2xl object-cover' src={item.classImage} alt="" />
+                            <div key={item._id} className='shadow-xl py-5 md:py-8 px-2 md:px-3 rounded-3xl' data-aos="fade-right">
+                                <img className='w-full rounded-2xl object-cover' src={item.classImage} alt="" />
                                 <h3 className='font-playfair text-2xl md:text-3xl mt-5 mb-1'>{item.className}</h3>
                                 <h3 className='text-xl mb-3'>{item.instructorName}</h3>
-                                <p className='text-xl text-gray-500'>Enrolled Students: <span>{item.enrolledStudent}</span></p>
-                                <p className='text-xl font-semibold block md:inline md:mr-12 text-gray-500'>Available seats: <span>{item.availableSeats}</span></p>
-                                <p className='text-xl font-semibold block md:inline text-gray-500'>Price: $<span>{item.price}</span></p>
+                                <p className='text-xl '>Enrolled Students: <span>{item.enrolledStudent}</span></p>
+                                <p className='text-xl font-semibold block md:inline md:mr-12'>Available seats: <span>{item.availableSeats}</span></p>
+                                <p className='text-xl font-semibold block md:inline'>Price: $<span>{item.price}</span></p>
                             </div>
                         ))
                     }
