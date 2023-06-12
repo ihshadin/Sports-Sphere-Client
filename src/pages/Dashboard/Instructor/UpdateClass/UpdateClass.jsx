@@ -19,8 +19,8 @@ const UpdateClass = () => {
         const updatedData = {
             clName: data.className || classData.className,
             clImage: data.photo || classData.classImage,
-            seats: data.seats || classData.availableSeats,
-            price: data.price || classData.price,
+            seats: parseInt(data.seats) || classData.availableSeats,
+            price: parseInt(data.price) || classData.price,
         }
 
         fetch(`http://localhost:5000/classes/${id}`, {

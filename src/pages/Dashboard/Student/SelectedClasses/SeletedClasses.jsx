@@ -6,7 +6,6 @@ import { FaTrashAlt } from "react-icons/fa";
 import { Link } from 'react-router-dom';
 import useAuth from '../../../../hooks/useAuth';
 import { useQuery } from '@tanstack/react-query';
-import { BsCreditCard2FrontFill } from 'react-icons/bs';
 import Swal from 'sweetalert2';
 import useAxiosSecure from '../../../../hooks/useAxiosSecure';
 
@@ -97,75 +96,11 @@ const SeletedClasses = () => {
                                             ><FaTrashAlt /></span>
                                         </td>
                                         <td className='text-center'>
-                                            <Link to='/dashboard/payment'><span className='py-2 px-5 bg-teal-500 text-white inline-block cursor-pointer'>Pay</span></Link>
+                                            <Link to={`/dashboard/payment/${selClass._id}`}><span className='py-2 px-5 bg-teal-500 text-white inline-block cursor-pointer'>Pay</span></Link>
                                         </td>
                                     </tr>
                                 ))
                             }
-
-                            {/* <tr className='font-medium'>
-                                <td>1</td>
-                                <td>Boxing learning course by mohammad ali</td>
-                                <td>Mohammad Ali</td>
-                                <td className='text-right'>$231</td>
-                                <td className='text-center'>
-                                    <span className='py-2 px-5 bg-red-600 text-white inline-block cursor-pointer'><FaTrashAlt /></span>
-                                </td>
-                            </tr>
-                            <tr className='font-medium'>
-                                <td>1</td>
-                                <td>Boxing learning course by mohammad ali</td>
-                                <td>Mohammad Ali</td>
-                                <td className='text-right'>$231</td>
-                                <td className='text-center'>
-                                    <span className='py-2 px-5 bg-red-600 text-white inline-block cursor-pointer'><FaTrashAlt /></span>
-                                </td>
-                            </tr>
-                            <tr className='font-medium'>
-                                <td>1</td>
-                                <td>Boxing learning course by mohammad ali</td>
-                                <td>Mohammad Ali</td>
-                                <td className='text-right'>$231</td>
-                                <td className='text-center'>
-                                    <span className='py-2 px-5 bg-red-600 text-white inline-block cursor-pointer'><FaTrashAlt /></span>
-                                </td>
-                            </tr>
-                            <tr className='font-medium'>
-                                <td>1</td>
-                                <td>Boxing learning course by mohammad ali</td>
-                                <td>Mohammad Ali</td>
-                                <td className='text-right'>$231</td>
-                                <td className='text-center'>
-                                    <span className='py-2 px-5 bg-red-600 text-white inline-block cursor-pointer'><FaTrashAlt /></span>
-                                </td>
-                            </tr>
-                            <tr className='font-medium'>
-                                <td>1</td>
-                                <td>Boxing learning course by mohammad ali</td>
-                                <td>Mohammad Ali</td>
-                                <td className='text-right'>$231</td>
-                                <td className='text-center'>
-                                    <span className='py-2 px-5 bg-red-600 text-white inline-block cursor-pointer'><FaTrashAlt /></span>
-                                </td>
-                            </tr>
-                            <tr className='font-medium'>
-                                <td>1</td>
-                                <td>Boxing learning course by mohammad ali</td>
-                                <td>Mohammad Ali</td>
-                                <td className='text-right'>$231</td>
-                                <td className='text-center'>
-                                    <span className='py-2 px-5 bg-red-600 text-white inline-block cursor-pointer'><FaTrashAlt /></span>
-                                </td>
-                            </tr>
-                            <tr className='font-medium'>
-                                <td>1</td>
-                                <td>Boxing learning course by mohammad ali</td>
-                                <td>Mohammad Ali</td>
-                                <td className='text-right'>$231</td>
-                                <td className='text-center'>
-                                    <span className='py-2 px-5 bg-red-600 text-white inline-block cursor-pointer'><FaTrashAlt /></span>
-                                </td>
-                            </tr> */}
                         </tbody>
                     </table>
                 </div>

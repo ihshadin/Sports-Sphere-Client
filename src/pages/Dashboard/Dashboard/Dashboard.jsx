@@ -39,6 +39,7 @@ const Dashboard = () => {
                                     userRole.role === 'student' && <>
                                         <li><Link className='sphere-secondary-bg mt-3 py-4 px-5 rounded-none text-lg font-medium border border-[#ECF8F9] hover:text-[#ECF8F9] focus:text-[#ECF8F9] active:bg-transparent' to='/dashboard/selected-classes'>My Selected Classes</Link></li>
                                         <li><Link className='sphere-secondary-bg mt-3 py-4 px-5 rounded-none text-lg font-medium border border-[#ECF8F9] hover:text-[#ECF8F9] focus:text-[#ECF8F9] active:bg-transparent' to='/dashboard/enrolled-classes'>My Enrolled Classes</Link></li>
+                                        <li><Link className='sphere-secondary-bg mt-3 py-4 px-5 rounded-none text-lg font-medium border border-[#ECF8F9] hover:text-[#ECF8F9] focus:text-[#ECF8F9] active:bg-transparent' to='/dashboard/payment-history'>Payment History</Link></li>
                                     </>
                                 }
                                 {/* Instructor Dashboard menu */}

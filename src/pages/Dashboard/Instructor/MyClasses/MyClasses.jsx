@@ -50,6 +50,7 @@ const MyClasses = () => {
                                 <th className='font-medium text-center'>Students</th>
                                 <th className='font-medium text-center'>Status</th>
                                 <th className='font-medium text-center'>Action</th>
+                                <th className='font-medium text-center'>FeedBack</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -57,19 +58,24 @@ const MyClasses = () => {
                                 myClasses.map((item, i) => (
                                     <tr key={item._id} className='font-medium'>
                                         <td>{i + 1}</td>
-                                        <td><img className='w-24 h-14' src={item.classImage} alt="" /></td>
+                                        <td><img className='w-24 h-14 object-cover' src={item.classImage} alt="" /></td>
                                         <td>{item.className}</td>
                                         <td className='text-right'>$<span>{item.price}</span></td>
                                         <td className='text-center'>{item.enrolledStudent}</td>
                                         <td className='font-semibold text-center uppercase'>{item.status}</td>
                                         <td className='text-center'>
+                                            <Link to={`/dashboard/update-class/${item._id}`}>
+                                                <span className='py-2 px-5 bg-teal-400 text-white inline-block cursor-pointer'><FaEdit /></span>
+                                            </Link>
+                                        </td>
+                                        <td className='text-center'>
                                             {
-                                                item.status === 'deny'
-                                                    ? <>
-                                                        <button className="rounded-none py-2 px-5 h-auto sphere-primary-bg text-white" onClick={() => window.my_modal_1.showModal()}>FeedBack</button>
-                                                        <dialog id="my_modal_1" className="modal">
+                                                item.feedback ? (
+                                                    <>
+                                                        <button className="rounded-none py-2 px-5 h-auto sphere-primary-bg text-white" onClick={() => window[`my_modal_${i}`].showModal()}>FeedBack</button>
+                                                        <dialog id={`my_modal_${i}`} className="modal">
                                                             <form method="dialog" className="modal-box">
-                                                                <h3 className="font-semibold font-playfair text-2xl text-center">Your Class Denid!</h3>
+                                                                <h3 className="font-semibold font-playfair text-2xl text-center">Feedback about your Class</h3>
                                                                 <p className="py-4">
                                                                     {item.feedback}
                                                                 </p>
@@ -79,9 +85,7 @@ const MyClasses = () => {
                                                             </form>
                                                         </dialog>
                                                     </>
-                                                    : <Link to={`/dashboard/update-class/${item._id}`}>
-                                                        <span className='py-2 px-5 bg-teal-400 text-white inline-block cursor-pointer'><FaEdit /></span>
-                                                    </Link>
+                                                ) : ('You have no feedback')
                                             }
                                         </td>
                                         {/* <td className='text-center'>

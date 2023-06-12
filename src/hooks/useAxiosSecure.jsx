@@ -11,7 +11,6 @@ const useAxiosSecure = () => {
     const { logOut } = useAuth();
     const navigate = useNavigate();
 
-
     useEffect(() => {
         axiosSecure.interceptors.request.use((config) => {
             const token = localStorage.getItem('access-token');
