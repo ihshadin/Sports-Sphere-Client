@@ -4,6 +4,7 @@ import useAxiosSecure from '../../../../hooks/useAxiosSecure';
 import useAuth from '../../../../hooks/useAuth';
 import Swal from 'sweetalert2';
 import { useNavigate } from 'react-router-dom';
+import './checkoutform.css'
 
 const CheckoutForm = ({ selClass }) => {
     const { _id, price, itemId, name, image, insName, insEmail } = selClass;
@@ -89,7 +90,6 @@ const CheckoutForm = ({ selClass }) => {
             }
             axiosSecure.post('/payments', payment)
                 .then(res => {
-                    console.log(res);
                     if (res.data.deleteResult.deletedCount > 0 && res.data.enrolledResult.insertedId && res.data.updateResult.modifiedCount > 0) {
                         Swal.fire({
                             title: 'Success!',
@@ -107,7 +107,7 @@ const CheckoutForm = ({ selClass }) => {
 
     return (
         <>
-            <form onSubmit={handleSubmit}>
+            <form className='sphereStripeForm' onSubmit={handleSubmit}>
                 <CardElement
                     options={{
                         style: {
@@ -124,7 +124,7 @@ const CheckoutForm = ({ selClass }) => {
                         },
                     }}
                 />
-                <button className='btn !min-h-0 h-auto border-0 rounded-none py-2 px-6 sphere-primary-bg text-white hover:text-[#445760] my-6' type="submit"
+                <button className='btn min-h-0 h-auto border-0 rounded-none py-3 px-8 sphere-primary-bg text-white hover:text-[#445760]' type="submit"
                     disabled={!stripe || !clientSecret || proccessing}>
                     Pay
                 </button>

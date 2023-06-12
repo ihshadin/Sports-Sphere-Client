@@ -10,7 +10,7 @@ import "swiper/css/pagination";
 const Testimonials = () => {
     const [reviews, setReviews] = useState([]);
     useEffect(() => {
-        fetch('http://localhost:5000/reviews')
+        fetch('https://sports-sphere-server.vercel.app/reviews')
             .then(res => res.json())
             .then(data => {
                 setReviews(data);

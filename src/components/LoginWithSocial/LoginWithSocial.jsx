@@ -21,7 +21,7 @@ const LoginWithSocial = () => {
                     phoneNumber: user.phoneNumber,
                     role: 'student',
                 }
-                fetch('http://localhost:5000/user', {
+                fetch('https://sports-sphere-server.vercel.app/user', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
@@ -49,7 +49,7 @@ const LoginWithSocial = () => {
                     phoneNumber: user.phoneNumber,
                     role: 'student',
                 }
-                fetch('http://localhost:5000/user', {
+                fetch('https://sports-sphere-server.vercel.app/user', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'

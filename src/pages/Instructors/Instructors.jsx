@@ -5,7 +5,7 @@ const Instructors = () => {
     const [allInstructor, setAllInstructor] = useState([]);
 
     useEffect(() => {
-        fetch('http://localhost:5000/instructor')
+        fetch('https://sports-sphere-server.vercel.app/instructor')
             .then(res => res.json())
             .then(data => {
                 setAllInstructor(data);
@@ -21,7 +21,7 @@ const Instructors = () => {
                     <h2 className='text-3xl md:text-5xl font-playfair text-center mb-8'>Our Instructors</h2>
                     <div className='grid md:grid-cols-2 xl:grid-cols-3 gap-6'>
                         {
-                            allInstructor.slice(0, 6).map(instructor => (
+                            allInstructor.map(instructor => (
                                 <div key={instructor._id} className='shadow-xl p-10 rounded-3xl' data-aos="fade-left">
                                     <img className='w-40 h-40 mx-auto rounded-full object-cover' src={instructor.photo} alt="" />
                                     <h3 className='font-playfair text-3xl mt-5 mb-1 text-center'>{instructor.name}</h3>

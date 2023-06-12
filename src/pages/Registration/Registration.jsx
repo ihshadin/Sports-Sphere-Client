@@ -30,7 +30,7 @@ const Registration = () => {
             .then(result => {
                 const createdUser = result.user;
                 updatedUserData(createdUser, data.fullName, data.photo)
-                fetch('http://localhost:5000/user', {
+                fetch('https://sports-sphere-server.vercel.app/user', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'

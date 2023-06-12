@@ -4,6 +4,7 @@ import useAuth from '../../hooks/useAuth';
 import Swal from 'sweetalert2';
 import { useLocation, useNavigate } from 'react-router-dom';
 import useUserRole from '../../hooks/useUserRole';
+import useAxiosSecure from '../../hooks/useAxiosSecure';
 
 const Classes = () => {
     const [classes, setClasses] = useState([]);
@@ -11,6 +12,7 @@ const Classes = () => {
     const [userRole] = useUserRole();
     const location = useLocation();
     const navigate = useNavigate();
+    const [axiosSecure] = useAxiosSecure();
 
     const handleSelectClass = item => {
         const seClaInfo = {
@@ -24,16 +26,9 @@ const Classes = () => {
             enStu: item.enrolledStudent,
         }
         if (user) {
-            fetch('http://localhost:5000/seClasses', {
-                method: "POST",
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(seClaInfo)
-            })
-                .then(res => res.json())
-                .then(data => {
-                    if (data.insertedId) {
+            axiosSecure.post('seClasses', seClaInfo)
+                .then(res => {
+                    if (res.data.insertedId) {
                         Swal.fire(
                             'Good News!',
                             'You Select a Class!',
@@ -55,7 +50,7 @@ const Classes = () => {
     }
 
     useEffect(() => {
-        fetch('http://localhost:5000/classes')
+        fetch('https://sports-sphere-server.vercel.app/classes')
             .then(res => res.json())
             .then(data => {
                 setClasses(data);
@@ -73,13 +68,13 @@ const Classes = () => {
                     <div className='grid md:grid-cols-3 gap-6'>
                         {
                             classes.map(item => (
-                                <div key={item._id} className={`shadow-xl bg-white py-5 md:py-8 px-2 md:px-3 rounded-3xl ${item.availableSeats === 0 && 'bg-red-100'}`}>
+                                <div key={item._id} className={`shadow-xl py-5 md:py-8 px-2 md:px-3 rounded-3xl ${item.availableSeats === 0 && 'bg-red-500 bg-opacity-20'}`}>
                                     <img className='w-full h-48 md:h-60 rounded-2xl object-cover' src={item.classImage} alt="" />
                                     <h3 className='font-playfair text-2xl md:text-3xl mt-5 mb-1'>{item.className}</h3>
                                     <h3 className='text-xl mb-3'>{item.instructorName}</h3>
-                                    <p className='text-xl text-gray-500'>Enrolled Students: <span>{item.enrolledStudent}</span></p>
-                                    <p className='text-xl font-semibold block md:inline md:mr-12 text-gray-500'>Available seats: <span>{item.availableSeats}</span></p>
-                                    <p className='text-xl font-semibold block md:inline text-gray-500'>Price: $<span>{item.price}</span></p>
+                                    <p className='text-gray-500'>Enrolled Students: <span>{item.enrolledStudent}</span></p>
+                                    <p className='font-semibold block md:inline md:mr-12 text-gray-500'>Available seats: <span>{item.availableSeats}</span></p>
+                                    <p className='font-semibold block md:inline text-gray-500'>Price: $<span>{item.price}</span></p>
                                     <button
                                         onClick={() => handleSelectClass(item)}
                                         disabled={userRole.role === 'instructor' || userRole.role === 'admin' || item.availableSeats === 0}

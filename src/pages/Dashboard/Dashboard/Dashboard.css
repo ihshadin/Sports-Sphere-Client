@@ -1,19 +1,24 @@
-/* ul.menu  *:hover {
+.sphereDashboard ul.menu  *:hover {
     background-color: initial !important;
 }
-ul.menu  *:active {
+.sphereDashboard ul.menu  *:active {
     background-color: initial !important;
 }
-ul.menu  *:focus {
+.sphereDashboard ul.menu  *:focus {
     background-color: initial !important;
     color: white;
-} */
-/* .table tr {
+}
+.sphereDashboard .table tr {
     border-bottom: 0;
 }
-.table tbody tr:nth-child(odd) {
+.sphereDashboard .table tbody tr:nth-child(odd) {
     background-color: white;
 }
-.table tbody tr:nth-child(even) {
+.sphereDashboard .table tbody tr:nth-child(even) {
   background-color:#e7eef0;
-} */
+}
+
+.sphereDashboard .active {
+    color: #ECF8F9;
+    background-color: transparent;
+}

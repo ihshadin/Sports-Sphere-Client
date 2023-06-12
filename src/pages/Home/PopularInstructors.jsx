@@ -4,7 +4,7 @@ const PopularInstructors = () => {
     const [topInstructor, setTopInstructor] = useState([]);
 
     useEffect(() => {
-        fetch('http://localhost:5000/instructor')
+        fetch('https://sports-sphere-server.vercel.app/instructor')
             .then(res => res.json())
             .then(data => {
                 setTopInstructor(data);

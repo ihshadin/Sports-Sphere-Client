@@ -1,0 +1,102 @@
+.sphereStripeForm label {
+  color: #6b7c93;
+  font-weight: 300;
+  letter-spacing: 0.025em;
+  margin-top: 16px;
+  display: block;
+}
+
+.sphereStripeForm input,
+.sphereStripeForm select {
+  display: block;
+  border: none;
+  font-size: 18px;
+  margin: 10px 0 20px 0;
+  max-width: 100%;
+  padding: 10px 14px;
+  box-shadow: rgba(50, 50, 93, 0.14902) 0px 1px 3px,
+    rgba(0, 0, 0, 0.0196078) 0px 1px 0px;
+  border-radius: 4px;
+  background: white;
+  color: #424770;
+  letter-spacing: 0.025em;
+  width: 500px;
+}
+
+.sphereStripeForm input::-webkit-input-placeholder {
+  color: #aab7c4;
+}
+
+.sphereStripeForm input::-moz-placeholder {
+  color: #aab7c4;
+}
+
+.sphereStripeForm input:-ms-input-placeholder {
+  color: #aab7c4;
+}
+
+.sphereStripeForm input::-ms-input-placeholder {
+  color: #aab7c4;
+}
+
+.sphereStripeForm input::placeholder {
+  color: #aab7c4;
+}
+
+.sphereStripeForm .result,
+.sphereStripeForm .error {
+  font-size: 16px;
+  font-weight: bold;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+.sphereStripeForm .error {
+  color: #e4584c;
+}
+
+.sphereStripeForm .result {
+  color: #666ee8;
+}
+
+/* 
+The StripeElement class is applied to the Element container by default.
+More info: https://stripe.com/docs/stripe-js/reference#element-options
+*/
+
+.sphereStripeForm .StripeElement,
+.sphereStripeForm .StripeElementIdeal,
+.sphereStripeForm .StripeElementP24,
+.sphereStripeForm .StripeElementEPS,
+.sphereStripeForm .StripeElementFpx {
+  display: block;
+  margin: 10px 0 20px 0;
+  max-width: 500px;
+  padding: 10px 14px;
+  box-shadow: rgba(50, 50, 93, 0.14902) 0px 1px 3px,
+    rgba(0, 0, 0, 0.0196078) 0px 1px 0px;
+  border-radius: 4px;
+  background: white;
+}
+
+.sphereStripeForm .StripeElement--focus,
+.sphereStripeForm .StripeElementIdeal--focus,
+.sphereStripeForm .StripeElementP24--focus,
+.sphereStripeForm .StripeElementEPS--focus,
+.sphereStripeForm .StripeElementFpx--focus {
+  box-shadow: rgba(50, 50, 93, 0.109804) 0px 4px 6px,
+    rgba(0, 0, 0, 0.0784314) 0px 1px 3px;
+  transition: all 150ms ease;
+}
+
+.sphereStripeForm .StripeElement.loading {
+  height: 41.6px;
+  opacity: 0.6;
+}
+
+.sphereStripeForm .StripeElementIdeal,
+.sphereStripeForm .StripeElementP24,
+.sphereStripeForm .StripeElementEPS,
+.sphereStripeForm .StripeElementFpx {
+  padding: 0;
+}

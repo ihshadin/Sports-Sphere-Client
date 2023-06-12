@@ -12,7 +12,7 @@ const Banner = () => {
     const [slidesLoaded, setSlidesLoaded] = useState(false);
 
     useEffect(() => {
-        fetch('http://localhost:5000/sliders')
+        fetch('https://sports-sphere-server.vercel.app/sliders')
             .then(res => res.json())
             .then(data => {
                 setSliders(data);

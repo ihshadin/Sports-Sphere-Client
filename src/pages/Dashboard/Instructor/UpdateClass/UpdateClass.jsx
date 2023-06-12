@@ -22,18 +22,9 @@ const UpdateClass = () => {
             seats: parseInt(data.seats) || classData.availableSeats,
             price: parseInt(data.price) || classData.price,
         }
-
-        fetch(`http://localhost:5000/classes/${id}`, {
-            method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(updatedData)
-        })
-            .then(res => res.json())
-            .then(data => {
-                console.log(data);
-                if (data.modifiedCount > 0) {
+        axiosSecure.put(`classes/${id}`, updatedData)
+            .then(res => {
+                if (res.data.modifiedCount > 0) {
                     Swal.fire({
                         title: 'Success!',
                         text: `${classData.className} Updated Successfully`,
@@ -56,7 +47,6 @@ const UpdateClass = () => {
     })
 
     refetch();
-    console.log('object');
 
     useEffect(() => {
         AOS.init();
