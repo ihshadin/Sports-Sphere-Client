@@ -1,6 +1,10 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { AiOutlineAlignLeft } from 'react-icons/ai'
+import { HiDocumentDuplicate } from 'react-icons/hi'
+import { FaGraduationCap, FaPaypal, FaSchool, FaUsers } from 'react-icons/fa'
+import { GiClassicalKnowledge } from 'react-icons/gi'
+import { BsFillDiagram2Fill, BsFillDiagram3Fill, BsMortarboardFill } from 'react-icons/bs'
 import { Link, NavLink, Outlet } from 'react-router-dom';
 import logo from '../../../assets/images/logo.png'
 import './Dashboard.css'
@@ -37,23 +41,23 @@ const Dashboard = () => {
                                 {/* Student Dashboard menu */}
                                 {
                                     userRole.role === 'student' && <>
-                                        <li><NavLink className='sphere-secondary-bg mt-3 py-4 px-5 rounded-none text-lg font-medium border border-[#ECF8F9] hover:text-[#ECF8F9] focus:text-[#ECF8F9] active:bg-transparent' to='/dashboard/selected-classes'>My Selected Classes</NavLink></li>
-                                        <li><NavLink className='sphere-secondary-bg mt-3 py-4 px-5 rounded-none text-lg font-medium border border-[#ECF8F9] hover:text-[#ECF8F9] focus:text-[#ECF8F9] active:bg-transparent' to='/dashboard/enrolled-classes'>My Enrolled Classes</NavLink></li>
-                                        <li><NavLink className='sphere-secondary-bg mt-3 py-4 px-5 rounded-none text-lg font-medium border border-[#ECF8F9] hover:text-[#ECF8F9] focus:text-[#ECF8F9] active:bg-transparent' to='/dashboard/payment-history'>Payment History</NavLink></li>
+                                        <li><NavLink className='sphere-secondary-bg mt-3 py-4 px-5 rounded-none text-lg font-medium border border-[#ECF8F9] hover:text-[#ECF8F9] focus:text-[#ECF8F9] active:bg-transparent' to='/dashboard/selected-classes'><BsMortarboardFill className='w-7 h-7' />My Selected Classes</NavLink></li>
+                                        <li><NavLink className='sphere-secondary-bg mt-3 py-4 px-5 rounded-none text-lg font-medium border border-[#ECF8F9] hover:text-[#ECF8F9] focus:text-[#ECF8F9] active:bg-transparent' to='/dashboard/enrolled-classes'><FaSchool className='w-7 h-7' />My Enrolled Classes</NavLink></li>
+                                        <li><NavLink className='sphere-secondary-bg mt-3 py-4 px-5 rounded-none text-lg font-medium border border-[#ECF8F9] hover:text-[#ECF8F9] focus:text-[#ECF8F9] active:bg-transparent' to='/dashboard/payment-history'><FaPaypal className='w-7 h-7' /> Payment History</NavLink></li>
                                     </>
                                 }
                                 {/* Instructor Dashboard menu */}
                                 {
                                     userRole.role === 'instructor' && <>
-                                        <li><NavLink className='sphere-secondary-bg mt-3 py-4 px-5 rounded-none text-lg font-medium border border-[#ECF8F9] hover:text-[#ECF8F9] focus:text-[#ECF8F9] active:bg-transparent' to='/dashboard/my-classes'>My Classes</NavLink></li>
-                                        <li><NavLink className='sphere-secondary-bg mt-3 py-4 px-5 rounded-none text-lg font-medium border border-[#ECF8F9] hover:text-[#ECF8F9] focus:text-[#ECF8F9] active:bg-transparent' to='/dashboard/add-new-class'>Add New Class</NavLink></li>
+                                        <li><NavLink className='sphere-secondary-bg mt-3 py-4 px-5 rounded-none text-lg font-medium border border-[#ECF8F9] hover:text-[#ECF8F9] focus:text-[#ECF8F9] active:bg-transparent' to='/dashboard/my-classes'><BsFillDiagram2Fill className='w-7 h-7' />My Classes</NavLink></li>
+                                        <li><NavLink className='sphere-secondary-bg mt-3 py-4 px-5 rounded-none text-lg font-medium border border-[#ECF8F9] hover:text-[#ECF8F9] focus:text-[#ECF8F9] active:bg-transparent' to='/dashboard/add-new-class'><FaGraduationCap className='w-7 h-7' />Add New Class</NavLink></li>
                                     </>
                                 }
                                 {/* Admin Dashboard menu */}
                                 {
                                     userRole.role === 'admin' && <>
-                                        <li><NavLink className='sphere-secondary-bg mt-3 py-4 px-5 rounded-none text-lg font-medium border border-[#ECF8F9] hover:text-[#ECF8F9] focus:text-[#ECF8F9] active:bg-transparent' to='/dashboard/manage-classes'>Manage Classes</NavLink></li>
-                                        <li><NavLink className='sphere-secondary-bg mt-3 py-4 px-5 rounded-none text-lg font-medium border border-[#ECF8F9] hover:text-[#ECF8F9] focus:text-[#ECF8F9] active:bg-transparent' to='/dashboard/manage-users'>Manage Users</NavLink></li>
+                                        <li><NavLink className='sphere-secondary-bg mt-3 py-4 px-5 rounded-none text-lg font-medium border border-[#ECF8F9] hover:text-[#ECF8F9] focus:text-[#ECF8F9] active:bg-transparent' to='/dashboard/manage-classes'><BsFillDiagram3Fill className='w-7 h-7' /> Manage Classes</NavLink></li>
+                                        <li><NavLink className='sphere-secondary-bg mt-3 py-4 px-5 rounded-none text-lg font-medium border border-[#ECF8F9] hover:text-[#ECF8F9] focus:text-[#ECF8F9] active:bg-transparent' to='/dashboard/manage-users'><FaUsers className='w-7 h-7' /> Manage Users</NavLink></li>
                                     </>
                                 }
                             </ul>

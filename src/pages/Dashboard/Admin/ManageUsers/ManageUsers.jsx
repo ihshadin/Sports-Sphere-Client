@@ -1,10 +1,9 @@
 import React, { useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
-import AOS from 'aos';
-import 'aos/dist/aos.css';
 import useAxiosSecure from '../../../../hooks/useAxiosSecure';
 import { useQuery } from '@tanstack/react-query';
 import Swal from 'sweetalert2';
+import { Slide } from 'react-awesome-reveal';
 
 const ManageUsers = () => {
     const [axiosSecure] = useAxiosSecure();
@@ -33,11 +32,6 @@ const ManageUsers = () => {
                 }
             })
     }
-
-    // AOS Package
-    useEffect(() => {
-        AOS.init();
-    }, [])
     return (
         <>
             <Helmet>
@@ -45,7 +39,7 @@ const ManageUsers = () => {
             </Helmet>
             <div className='py-20 md:py-20 px-2 md:px-5'>
                 <div>
-                    <h2 className='text-3xl md:text-5xl font-playfair text-center' data-aos="zoom-in">Update Users</h2>
+                    <Slide><h2 className='text-3xl md:text-5xl font-playfair text-center' data-aos="zoom-in">Update Users</h2></Slide>
                     <p className='max-w-xl w-full text-center mx-auto mt-2 mb-10' data-aos="fade-up">
                         View the latest user updates and stay informed about the activities and achievements of our vibrant community.
                     </p>
